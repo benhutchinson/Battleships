@@ -29,8 +29,3 @@ end
 Then(/^I should submit my choice$/) do
   click_button("Send Your Co-Ordinates")
 end
-
-Then(/^I choose "(.*?)" from x\-co\-ordinate$/) do |num|
-  step 'I see positioning options'
-  select(num, :from => 'x_co_ordinate')
-end

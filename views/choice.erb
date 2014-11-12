@@ -3,3 +3,26 @@
 This is the x co-ord: <%= @co_ord_x %>
 This is the y co-ord: <%= @co_ord_y %>
 You have placed your ship <%= @orientation %>
+
+
+
+
+<table>
+  <tr>
+      <th></th>
+    <% @column_headers.each do |header| %>
+      <th><%= header %></th>
+    <% end %>
+  </tr>
+
+<% @data_array.each_with_index do |row, index| %>
+  <tr>
+    <th><%= @row_headers[index] %></th>
+    <% row.each do |element| %>
+      <td><%= element %></td>
+    <% end %>
+  </tr>
+<% end %>
+
+
+</table>
