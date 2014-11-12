@@ -1,0 +1,62 @@
+<% if @name %>
+
+Hello <%= @name.capitalize %>
+
+<form action="/coord_selection" method ="post" >
+
+  <p>
+
+  Please select the X Co-Ordinate Of The Cell:
+
+  <select name ="x_co_ordinate">
+    <option value ="0">0</option>
+    <option value ="1">1</option>
+    <option value ="2">2</option>
+    <option value ="3">3</option>
+    <option value ="4">4</option>
+    <option value ="5">5</option>
+    <option value ="6">6</option>
+    <option value ="7">7</option>
+    <option value ="8">8</option>
+    <option value ="9">9</option>
+  </select>
+
+  <p>
+
+  Please select the Y Co-Ordinate Of The Cell:
+
+  <select name ="y_co_ordinate">
+    <option value ="0">0</option>
+    <option value ="1">1</option>
+    <option value ="2">2</option>
+    <option value ="3">3</option>
+    <option value ="4">4</option>
+    <option value ="5">5</option>
+    <option value ="6">6</option>
+    <option value ="7">7</option>
+    <option value ="8">8</option>
+    <option value ="9">9</option>
+  </select>
+
+  <p>
+
+  Please select an orientation of your ship
+  <select name = "orientation">
+    <option value = "horizontal">Horizontal</option>
+    <option value = "vertical">Vertical</option>
+  </select>
+
+  <input type="submit" value="Send Your Co-Ordinates">
+
+</form>
+
+
+<% end %>
+
+<% unless @name %>
+"What's your name?"
+<form action="/hiya" method ="post">
+<input type="text" name="your_name" placeholder="Type your name here">
+<input type="submit" value="register">
+</form>
+<% end %>
