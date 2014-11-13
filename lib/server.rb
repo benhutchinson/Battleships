@@ -6,6 +6,8 @@ class Battleships < Sinatra::Base
   set :views, Proc.new { File.join(root, "../views") }
   enable :sessions
 
+  GAME = Game.new
+
   get '/' do
     'Hello Battleships!'
     erb :index
@@ -17,8 +19,8 @@ class Battleships < Sinatra::Base
 
   post '/hiya' do
     @name = params[:your_name]
-    @game = Game.new(@name)
-    session[:game] = @game
+    GAME.add_player(@name)
+    session[:game] = GAME
     session[:me] = @name
     p session
     if @name != ''

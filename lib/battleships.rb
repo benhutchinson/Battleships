@@ -116,13 +116,21 @@ end
 class Game
 
   attr_reader :current_player
-  def initialize(name = "test")
-    player1 = Player.new(name)
-    # player2 = Player.new("Brenda")
-    # player1.opponent = player2
-    # player2.opponent = player1
-    @current_player = player1
+  attr_accessor :players
+  def initialize
+    @players = []
+    # player1 = Player.new(name)
+    # # player2 = Player.new("Brenda")
+    # # player1.opponent = player2
+    # # player2.opponent = player1
+    # @current_player = player1
   end
+
+  def add_player(name = "test")
+    player = Player.new(name)
+    players << player
+  end
+
 
   def play
     loop do
