@@ -1,6 +1,6 @@
 # SHIPS = {'battleship' => 5, 'cruiser' => 4, 'destroyer => 3'}
 SHIPS = { 'torpedo_boat' => 2 }
-SIZE = 10
+SIZE = 3
 
 
 class Cell < Struct.new( :ship , :hit )
@@ -86,7 +86,7 @@ class Player
 
       puts "Player #{@name}, please place your #{ship}, size #{length}"
       puts "enter start coordinates (x,y)"
-      coordinates = gets.chomp.split(',').to_enum # this is probably a bad way to do this
+      coordinates = gets.chomp.split(',').to_enum # thihttp://localhost:9292/namequestions is probably a bad way to do this
       x , y = coordinates.next.to_i, coordinates.next.to_i
       puts "across? (y,n)?"
       direction = gets.chomp.downcase == 'y' ? @board.rows : @board.cols
@@ -129,6 +129,14 @@ class Game
   def add_player(name = "test")
     player = Player.new(name)
     players << player
+  end
+
+  def setup_with_two_players
+    players.first = player1
+    players.last = player2  
+    player1.opponent = player2
+    player2.opponent = player1
+    @current_player = player1
   end
 
 

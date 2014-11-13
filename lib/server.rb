@@ -22,11 +22,12 @@ class Battleships < Sinatra::Base
     GAME.add_player(@name)
     session[:game] = GAME
     session[:me] = @name
+    p GAME.players.count
     p session
-    if @name != ''
+    if GAME.players.count == 2
       erb :form
     else
-      erb :error
+      erb :waiting
     end
   end
 
@@ -43,9 +44,9 @@ class Battleships < Sinatra::Base
     # @column_headers = ['a','b','c','d']
     session[:game].current_player.board.place_ship(@co_ord_x.to_i, @co_ord_y.to_i, 2)
     @data_array = session[:game].current_player.board.show_data
-     @row_headers = (0..9).to_a
-     @column_headers = (0..9).to_a
-
+     @row_headers = (0..(SIZE-1)).to_a
+     @column_headers = (0..(SIZE-1)).to_a
+Í
 
     erb :choice
   end
