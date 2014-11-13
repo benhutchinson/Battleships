@@ -28,11 +28,11 @@ class Battleships < Sinatra::Base
     redirect '/waiting'
   end
 
-  get '/waiting' do
+  get '/waiting' do 
+    @name = session[:me]
     if GAME.players.count == 2 
-      # erb :play
-      'you sre the second player'
-    else
+        erb :form
+      else
       # erb :waiting
       'wait a bit'
     end
@@ -53,7 +53,6 @@ class Battleships < Sinatra::Base
     @data_array = session[:game].current_player.board.show_data
      @row_headers = (0..(SIZE-1)).to_a
      @column_headers = (0..(SIZE-1)).to_a
-Í
 
     erb :choice
   end
