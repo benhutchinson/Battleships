@@ -1,6 +1,6 @@
 # SHIPS = {'battleship' => 5, 'cruiser' => 4, 'destroyer => 3'}
 SHIPS = { 'torpedo_boat' => 2 }
-SIZE = 3
+SIZE = 10
 
 
 class Cell < Struct.new( :ship , :hit )
@@ -73,12 +73,10 @@ end
 class Player
   attr_accessor :board, :name
   attr_accessor :opponent
-  attr_accessor :player_id
 
   def initialize(name)
     @name = name
     @board = Board.new
-    @player_id = self.object_id
     # place_all_ships
   end
 
@@ -131,8 +129,7 @@ class Game
     # @current_player = player1
   end
 
-  def add_player(name = "test")
-    player = Player.new(name)
+  def add_player(player)
     players << player
   end
 

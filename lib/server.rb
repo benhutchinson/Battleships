@@ -19,9 +19,11 @@ class Battleships < Sinatra::Base
 
   post '/hiya' do
     @name = params[:your_name]
-    GAME.add_player(@name)
-    session[:game] = GAME
+    my_player = Player.new(@name)
+    session[:player_id] = my_player.object_id
+    GAME.add_player(my_player)
     session[:me] = @name
+    
     p GAME.players.count
     p session
 
@@ -50,7 +52,7 @@ class Battleships < Sinatra::Base
     # @column_headers = ['a','b','c','d']
     GAME.setup_with_two_players
 
-    my_player = GAME.players.select {|player| player.name == session[:me] }.first
+    my_player = GAME.players.select {|player| player.object_id == session[:player_id] }.first
 
     my_player.board.place_ship(@co_ord_x.to_i, @co_ord_y.to_i, 2)
     @data_array = my_player.board.show_data
