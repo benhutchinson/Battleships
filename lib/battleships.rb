@@ -71,11 +71,14 @@ class Board
 end
 
 class Player
-  attr_reader :board, :name
+  attr_accessor :board, :name
   attr_accessor :opponent
+  attr_accessor :player_id
+
   def initialize(name)
     @name = name
     @board = Board.new
+    @player_id = self.object_id
     # place_all_ships
   end
 
@@ -115,8 +118,10 @@ end
 
 class Game
 
-  attr_reader :current_player
+  attr_accessor :current_player
   attr_accessor :players
+  attr_accessor :player
+
   def initialize
     @players = []
     # player1 = Player.new(name)
@@ -132,8 +137,8 @@ class Game
   end
 
   def setup_with_two_players
-    players.first = player1
-    players.last = player2  
+    player1 = players.first
+    player2 = players.last 
     player1.opponent = player2
     player2.opponent = player1
     @current_player = player1
