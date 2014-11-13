@@ -23,11 +23,18 @@ class Battleships < Sinatra::Base
     session[:game] = GAME
     session[:me] = @name
     p GAME.players.count
-    p session
-    if GAME.players.count == 2
-      erb :form
+    p session   
+
+    redirect '/waiting'
+  end
+
+  get '/waiting' do
+    if GAME.players.count == 2 
+      # erb :play
+      'you sre the second player'
     else
-      erb :waiting
+      # erb :waiting
+      'wait a bit'
     end
   end
 
